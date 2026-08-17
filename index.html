@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikki's Curry & All</title>
+
+    <!-- This line imports Tailwind CSS, a library that makes styling easy -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- This block allows us to define a custom color palette and fonts -->
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+        }
+        @layer utilities {
+            .tab-active {
+                /* The active tab will have a dark border and text to stand out */
+                @apply border-brand-olive text-brand-olive;
+            }
+        }
+    </style>
+    <script>
+        // Here, we define the new color palette based on your logo
+        tailwind.config = {
+            theme: {
+                extend: {
+                   colors: {
+                        'brand-olive': '#575329', // Dark olive from the logo's border
+                        'brand-gold': '#F3EAC2',   // A warm, golden cream for the background
+                        'brand-dark': '#1f2937',   // A soft black for text (gray-800)
+                        'accent-red': '#dc2626',   // A bright red for effect (red-600)
+                        'brand-green': '#575329',  // Using olive tone so nav/labels match your theme
+}
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-brand-gold text-brand-dark">
+
+    <div class="container mx-auto max-w-5xl p-4">
+
+        <!-- ===== HEADER SECTION ===== -->
+        <!-- The header now proudly displays your company logo -->
+        <header class="bg-brand-olive p-4 rounded-xl text-center shadow-lg">
+             <img src="company-logo.png" alt="Nikki's Curry & All - Authentic Durban Indian Cuisine, From My Home To Yours" class="mx-auto w-full max-w-md">
+        </header>
+
+
+        <!-- ===== NAVIGATION TABS ===== -->
+        <nav class="mt-8 mb-6 border-b-2 border-brand-green/20">
+            <ul class="flex justify-center space-x-4 md:space-x-8 -mb-0.5">
+                <li>
+                    <a href="#" class="tab-link inline-block p-4 border-b-4 border-transparent text-lg font-semibold hover:text-brand-green transition-colors duration-300 tab-active" data-tab="menu">Menu</a>
+                </li>
+                <li>
+                    <a href="#" class="tab-link inline-block p-4 border-b-4 border-transparent text-lg font-semibold hover:text-brand-green transition-colors duration-300" data-tab="gallery">Gallery</a>
+                </li>
+                <li>
+                    <a href="#" class="tab-link inline-block p-4 border-b-4 border-transparent text-lg font-semibold hover:text-brand-green transition-colors duration-300" data-tab="about">About Us</a>
+                </li>
+                <li>
+                    <a href="#" class="tab-link inline-block p-4 border-b-4 border-transparent text-lg font-semibold hover:text-brand-green transition-colors duration-300" data-tab="contact">Order Info</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- ===== MAIN CONTENT AREA ===== -->
+        <main id="main-content">
+
+            <!-- ## MENU CONTENT ## -->
+            <div id="menu-content" class="tab-content">
+                <div class="bg-white/60 p-6 md:p-8 rounded-xl shadow-lg">
+                    <h2 class="text-3xl font-bold text-center text-black mb-2">Our Menu</h2>
+                    <p class="text-center text-gray-600 mb-6">WHATSAPP 071 457 5636 TO PLACE ORDERS (DAY BEFORE)</p>
+                    
+                    <!-- 
+                    *****************************************************
+                    * *
+                    * EDIT THE PRICES FOR EACH ITEM HERE                *
+                    * Just change the text inside the <span> tag      *
+                    * The prices use the red color for effect.          *
+                    * *
+                    *****************************************************
+                    -->
+                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-6 text-lg">
+                        
+                        <!-- Curries Section -->
+                        <div>
+                            <h3 class="text-2xl font-semibold text-brand-olive mb-3 border-b border-brand-olive/30 pb-1">Curries</h3>
+                            <p class="flex justify-between">Lamb Curry <span class="font-bold text-accent-red">R 150</span></p>
+                            <p class="flex justify-between">Beef Curry <span class="font-bold text-accent-red">R 130</span></p>
+                            <p class="flex justify-between">Butter Chicken <span class="font-bold text-accent-red">R 120</span></p>
+                            <p class="flex justify-between">Chicken Curry (bone in) <span class="font-bold text-accent-red">R 130</span></p>
+                            <p class="flex justify-between">Beans Curry <span class="font-bold text-accent-red">R 80</span></p>
+                            <p class="flex justify-between">Lamb Chops Chutney <span class="font-bold text-accent-red">R 150</span></p>
+                            <p class="flex justify-between">Mince Kebabs <span class="font-bold text-accent-red">R 100</span></p>
+                            <p class="flex justify-between">Trotters & Beans <span class="font-bold text-accent-red">R 100</span></p>
+                            <p class="flex justify-between">Potato Curry <span class="font-bold text-accent-red">R 80</span></p>
+                            <p class="flex justify-between">Green Beans Curry <span class="font-bold text-accent-red">R 80</span></p>
+                            <b><p class="text-sm mt-2 text-gray-600">* Served with Rice or Roti. Add R10 for Bunny Chows.</p></b>
+                        </div>
+
+                        <!-- Other Items Section -->
+                        <div>
+                            <h3 class="text-2xl font-semibold text-brand-olive mb-3 border-b border-brand-olive/30 pb-1">Breyani, Rolls & More</h3>
+                             <p class="flex justify-between">Breyani Lamb <span class="font-bold text-accent-red">R 150</span></p>
+                             <p class="flex justify-between">Breyani Chicken <span class="font-bold text-accent-red">R 130</span></p>
+                             <p class="flex justify-between">Roti Rolls (Steak/Chicken) <span class="font-bold text-accent-red">R 80</span></p>
+                             <p class="flex justify-between">Chicken Wraps <span class="font-bold text-accent-red">R 80</span></p>
+                             <p class="flex justify-between">Masala Steak/Chicken Sandwich <span class="font-bold text-accent-red">R 80</span></p>
+
+                            <h3 class="text-2xl font-semibold text-brand-olive mt-6 mb-3 border-b border-brand-olive/30 pb-1">Sides & Snacks</h3>
+                            <p class="flex justify-between">Samoosas <span class="font-bold text-accent-red">R 10 </span></p>
+                            <p class="flex justify-between">Samoosas (order per dozen) <span class="font-bold text-accent-red">R 120 </span></p>
+                            <p class="flex justify-between">Chilli Bites Normal (per dozen) <span class="font-bold text-accent-red">R 90 </span></p>
+                            <p class="flex justify-between">Chilli Bites Large (per dozen) <span class="font-bold text-accent-red">R 120</span></p>
+                            <p class="flex justify-between">Plain Roti (dozen) <span class="font-bold text-accent-red">R 100</span></p>
+                            <p class="flex justify-between">Plain Roti (each) <span class="font-bold text-accent-red">R 10</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="gallery-content" class="tab-content hidden">
+                <div class="bg-white/60 p-6 md:p-8 rounded-xl shadow-lg">
+                    <h2 class="text-3xl font-bold text-center text-black mb-6">Gallery</h2>
+                    <!-- Each image now has a label below it -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+                        <div>
+                           <img src="curry-1.jpg" alt="A rich and hearty lamb and potato curry" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
+                            <p class="text-center font-semibold mt-2 text-brand-green">Mutton Curry</p>
+                        </div>
+                         <div>
+                            <img src="curry-2.jpg" alt="Creamy butter chicken curry" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
+                            <p class="text-center font-semibold mt-2 text-brand-green">Butter Chicken</p>
+                        </div>
+                        <div>
+                            <img src="bunny-chow.png" alt="A delicious beans bunny chow" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
+                            <p class="text-center font-semibold mt-2 text-brand-green">Bunny Chow</p>
+                        </div>
+                        <div>
+                            <img src="briyani.jpg" alt="A plate of delicious breyani" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
+                            <p class="text-center font-semibold mt-2 text-brand-green">Breyani</p>
+                        </div>
+                        <div>
+                            <img src="chilli-bites.jpg" alt="A plate of fresh, golden-brown chilli bites" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
+                            <p class="text-center font-semibold mt-2 text-brand-green">Chilli Bites</p>
+                        </div>
+                        <div>
+                            <img src="roti-rolls.jpg" alt="A tasty roti roll" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
+                            <p class="text-center font-semibold mt-2 text-brand-green">Roti Rolls</p>
+                        </div>
+                        <div>
+                            <img src="samoosas.jpg" alt="A platter of crispy samoosas" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
+                            <p class="text-center font-semibold mt-2 text-brand-green">Samoosas</p>
+                        </div>
+                         <div>
+                            <img src="samoosa-and-springroll-platter.jpg" alt="A samoosa and springroll platter" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
+                             <p class="text-center font-semibold mt-2 text-brand-green">Platters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+   <!-- ## ABOUT US CONTENT ## -->
+            <div id="about-content" class="tab-content hidden">
+                 <div class="bg-white/60 p-6 md:p-8 rounded-xl shadow-lg text-center">
+                    <h2 class="text-3xl font-bold text-black mb-4">About Nikki's Curry & All</h2>
+                    <div class="max-w-2xl mx-auto text-lg text-gray-700 text-left space-y-4">
+                        <p>
+                            Welcome to Nikki's Curry & All, where we bring the heart of Durban's authentic Indian cuisine right to your table in Kempton Park. Our journey started with a simple passion: to share the rich, vibrant, and unforgettable flavours of traditional home-cooked curries. 
+                        </p>
+                        <!-- The slogan is now highlighted with a light green background -->
+                        <p class="font-semibold text-center text-xl text-brand-green mt-4 bg-brand-green/10 p-3 rounded-lg">
+                            "From my home to yours."
+                        </p>
+                        <p>
+                            This isn't just a slogan for us; it's our promise. Every dish is prepared with the same love, care, and attention to detail that you would find in our own family kitchen. We use only the freshest ingredients and time-honoured recipes passed down through generations to create meals that are bursting with flavour and warmth. 
+                        </p>
+                        <p>
+                            Whether you're craving a classic lamb curry, a creamy butter chicken, or our famous samoosas, we invite you to experience a taste of home with us.
+                        </p>
+                    </div>
+                 </div>
+            </div>
+
+
+            <!-- ## CONTACT / ORDER INFO CONTENT ## -->
+            <div id="contact-content" class="tab-content hidden">
+                 <div class="bg-white/60 p-6 md:p-8 rounded-xl shadow-lg text-center">
+                    <h2 class="text-3xl font-bold text-black mb-4">How to Order</h2>
+                    <p class="text-lg max-w-2xl mx-auto text-gray-700">
+                        We prepare all our meals fresh to order. Please place your orders the day before or at minimum give 4 hours notice to ensure we have sufficent time to prepare all food.
+                    </p>
+                    <div class="mt-6">
+                        <p class="text-xl font-semibold">Send your order via WhatsApp to:</p>
+                        <a href="https://wa.me/27714575636" class="inline-block bg-accent-red text-white text-3xl font-bold my-4 px-8 py-4 rounded-lg shadow-lg hover:bg-red-700 transition-colors">
+                           071 457 5636
+                        </a>
+                        <p class="mt-4 font-semibold">We accept Cash and Card payments on collection/delivery.</p>
+                    </div>
+                 </div>
+            </div>
+
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="text-center mt-12 pb-4">
+            <p class="text-brand-green/70">&copy; 2025 Nikki's Curry & All. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+
+    <!-- ===== JAVASCRIPT FOR TABS ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const targetId = link.getAttribute('data-tab');
+                    const targetContent = document.getElementById(targetId + '-content');
+
+                    tabLinks.forEach(l => l.classList.remove('tab-active'));
+                    tabContents.forEach(c => c.classList.add('hidden'));
+
+                    link.classList.add('tab-active');
+if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
