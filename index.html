@@ -1,241 +1,1780 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikki's Curry & All</title>
+    <title>Nikki's Curry & All | Authentic Durban Indian Cuisine in Kempton Park</title>
 
-    <!-- This line imports Tailwind CSS, a library that makes styling easy -->
+    <!-- Google Fonts: Playfair Display for Editorial Headings & Plus Jakarta Sans for Clean UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- This block allows us to define a custom color palette and fonts -->
-    <style type="text/tailwindcss">
-        @layer base {
-            body {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            }
-        }
-        @layer utilities {
-            .tab-active {
-                /* The active tab will have a dark border and text to stand out */
-                @apply border-brand-olive text-brand-olive;
-            }
-        }
-    </style>
+    <!-- Custom Brand Configuration -->
     <script>
-        // Here, we define the new color palette based on your logo
         tailwind.config = {
             theme: {
                 extend: {
-                   colors: {
-                        'brand-olive': '#575329', // Dark olive from the logo's border
-                        'brand-gold': '#F3EAC2',   // A warm, golden cream for the background
-                        'brand-dark': '#1f2937',   // A soft black for text (gray-800)
-                        'accent-red': '#dc2626',   // A bright red for effect (red-600)
-                        'brand-green': '#575329',  // Using olive tone so nav/labels match your theme
-}
+                    colors: {
+                        'brand-olive': '#575329',
+                        'brand-olive-dark': '#3A371B',
+                        'brand-olive-light': '#736E3A',
+                        'brand-gold': '#F3EAC2',
+                        'brand-cream': '#FAF6E8',
+                        'brand-dark': '#1C1917',
+                        'accent-red': '#DC2626',
+                        'accent-red-dark': '#B91C1C',
+                        'brand-amber': '#D97706',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'warm': '0 10px 30px -5px rgba(87, 83, 41, 0.12), 0 4px 12px -2px rgba(87, 83, 41, 0.08)',
+                        'warm-lg': '0 20px 40px -10px rgba(58, 55, 27, 0.22)',
+                    }
                 }
             }
         }
     </script>
+
+    <style>
+        /* Custom Scrollbar & Subtle Texture */
+        body {
+            background-color: #F3EAC2;
+            background-image: radial-gradient( rgba(87, 83, 41, 0.06) 1px, transparent 1px );
+            background-size: 24px 24px;
+            color: #1C1917;
+        }
+
+        /* Hide scrollbars on horizontal pill bars */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Smooth Fade Animation for Sections */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Subtle pulse for live badge */
+        @keyframes softPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+        .cart-bump {
+            animation: softPulse 0.3s ease-in-out;
+        }
+    </style>
 </head>
 
-<body class="bg-brand-gold text-brand-dark">
+<body class="font-sans antialiased selection:bg-brand-olive selection:text-brand-gold min-h-screen flex flex-col justify-between">
 
-    <div class="container mx-auto max-w-5xl p-4">
-
-        <!-- ===== HEADER SECTION ===== -->
-        <!-- The header now proudly displays your company logo -->
-        <header class="bg-brand-olive p-4 rounded-xl text-center shadow-lg">
-             <img src="company-logo.png" alt="Nikki's Curry & All - Authentic Durban Indian Cuisine, From My Home To Yours" class="mx-auto w-full max-w-md">
-        </header>
-
-
-        <!-- ===== NAVIGATION TABS ===== -->
-        <nav class="mt-8 mb-6 border-b-2 border-brand-green/20">
-            <ul class="flex justify-center space-x-4 md:space-x-8 -mb-0.5">
-                <li>
-                    <a href="#" class="tab-link inline-block p-4 border-b-4 border-transparent text-lg font-semibold hover:text-brand-green transition-colors duration-300 tab-active" data-tab="menu">Menu</a>
-                </li>
-                <li>
-                    <a href="#" class="tab-link inline-block p-4 border-b-4 border-transparent text-lg font-semibold hover:text-brand-green transition-colors duration-300" data-tab="gallery">Gallery</a>
-                </li>
-                <li>
-                    <a href="#" class="tab-link inline-block p-4 border-b-4 border-transparent text-lg font-semibold hover:text-brand-green transition-colors duration-300" data-tab="about">About Us</a>
-                </li>
-                <li>
-                    <a href="#" class="tab-link inline-block p-4 border-b-4 border-transparent text-lg font-semibold hover:text-brand-green transition-colors duration-300" data-tab="contact">Order Info</a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- ===== MAIN CONTENT AREA ===== -->
-        <main id="main-content">
-
-            <!-- ## MENU CONTENT ## -->
-            <div id="menu-content" class="tab-content">
-                <div class="bg-white/60 p-6 md:p-8 rounded-xl shadow-lg">
-                    <h2 class="text-3xl font-bold text-center text-black mb-2">Our Menu</h2>
-                    <p class="text-center text-gray-600 mb-6">WHATSAPP 071 457 5636 TO PLACE ORDERS (DAY BEFORE)</p>
-                    
-                    <!-- 
-                    *****************************************************
-                    * *
-                    * EDIT THE PRICES FOR EACH ITEM HERE                *
-                    * Just change the text inside the <span> tag      *
-                    * The prices use the red color for effect.          *
-                    * *
-                    *****************************************************
-                    -->
-                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-6 text-lg">
-                        
-                        <!-- Curries Section -->
-                        <div>
-                            <h3 class="text-2xl font-semibold text-brand-olive mb-3 border-b border-brand-olive/30 pb-1">Curries</h3>
-                            <p class="flex justify-between">Lamb Curry <span class="font-bold text-accent-red">R 150</span></p>
-                            <p class="flex justify-between">Beef Curry <span class="font-bold text-accent-red">R 130</span></p>
-                            <p class="flex justify-between">Butter Chicken <span class="font-bold text-accent-red">R 120</span></p>
-                            <p class="flex justify-between">Chicken Curry (bone in) <span class="font-bold text-accent-red">R 130</span></p>
-                            <p class="flex justify-between">Beans Curry <span class="font-bold text-accent-red">R 80</span></p>
-                            <p class="flex justify-between">Lamb Chops Chutney <span class="font-bold text-accent-red">R 150</span></p>
-                            <p class="flex justify-between">Mince Kebabs <span class="font-bold text-accent-red">R 100</span></p>
-                            <p class="flex justify-between">Trotters & Beans <span class="font-bold text-accent-red">R 100</span></p>
-                            <p class="flex justify-between">Potato Curry <span class="font-bold text-accent-red">R 80</span></p>
-                            <p class="flex justify-between">Green Beans Curry <span class="font-bold text-accent-red">R 80</span></p>
-                            <b><p class="text-sm mt-2 text-gray-600">* Served with Rice or Roti. Add R10 for Bunny Chows.</p></b>
-                        </div>
-
-                        <!-- Other Items Section -->
-                        <div>
-                            <h3 class="text-2xl font-semibold text-brand-olive mb-3 border-b border-brand-olive/30 pb-1">Breyani, Rolls & More</h3>
-                             <p class="flex justify-between">Breyani Lamb <span class="font-bold text-accent-red">R 150</span></p>
-                             <p class="flex justify-between">Breyani Chicken <span class="font-bold text-accent-red">R 130</span></p>
-                             <p class="flex justify-between">Roti Rolls (Steak/Chicken) <span class="font-bold text-accent-red">R 80</span></p>
-                             <p class="flex justify-between">Chicken Wraps <span class="font-bold text-accent-red">R 80</span></p>
-                             <p class="flex justify-between">Masala Steak/Chicken Sandwich <span class="font-bold text-accent-red">R 80</span></p>
-
-                            <h3 class="text-2xl font-semibold text-brand-olive mt-6 mb-3 border-b border-brand-olive/30 pb-1">Sides & Snacks</h3>
-                            <p class="flex justify-between">Samoosas <span class="font-bold text-accent-red">R 10 </span></p>
-                            <p class="flex justify-between">Samoosas (order per dozen) <span class="font-bold text-accent-red">R 120 </span></p>
-                            <p class="flex justify-between">Chilli Bites Normal (per dozen) <span class="font-bold text-accent-red">R 90 </span></p>
-                            <p class="flex justify-between">Chilli Bites Large (per dozen) <span class="font-bold text-accent-red">R 120</span></p>
-                            <p class="flex justify-between">Plain Roti (dozen) <span class="font-bold text-accent-red">R 100</span></p>
-                            <p class="flex justify-between">Plain Roti (each) <span class="font-bold text-accent-red">R 10</span></p>
-                        </div>
-                    </div>
-                </div>
+    <!-- ===== TOP ANNOUNCEMENT BAR ===== -->
+    <div class="bg-brand-olive-dark text-brand-gold text-xs sm:text-sm py-2.5 px-4 border-b border-brand-gold/15">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                <span class="font-medium tracking-wide">Prepared Fresh to Order • Please order a day before (or min. 4 hours notice)</span>
             </div>
-
-            <div id="gallery-content" class="tab-content hidden">
-                <div class="bg-white/60 p-6 md:p-8 rounded-xl shadow-lg">
-                    <h2 class="text-3xl font-bold text-center text-black mb-6">Gallery</h2>
-                    <!-- Each image now has a label below it -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
-                        <div>
-                           <img src="curry-1.jpg" alt="A rich and hearty lamb and potato curry" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
-                            <p class="text-center font-semibold mt-2 text-brand-green">Mutton Curry</p>
-                        </div>
-                         <div>
-                            <img src="curry-2.jpg" alt="Creamy butter chicken curry" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
-                            <p class="text-center font-semibold mt-2 text-brand-green">Butter Chicken</p>
-                        </div>
-                        <div>
-                            <img src="bunny-chow.png" alt="A delicious beans bunny chow" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
-                            <p class="text-center font-semibold mt-2 text-brand-green">Bunny Chow</p>
-                        </div>
-                        <div>
-                            <img src="briyani.jpg" alt="A plate of delicious breyani" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
-                            <p class="text-center font-semibold mt-2 text-brand-green">Breyani</p>
-                        </div>
-                        <div>
-                            <img src="chilli-bites.jpg" alt="A plate of fresh, golden-brown chilli bites" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
-                            <p class="text-center font-semibold mt-2 text-brand-green">Chilli Bites</p>
-                        </div>
-                        <div>
-                            <img src="roti-rolls.jpg" alt="A tasty roti roll" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
-                            <p class="text-center font-semibold mt-2 text-brand-green">Roti Rolls</p>
-                        </div>
-                        <div>
-                            <img src="samoosas.jpg" alt="A platter of crispy samoosas" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
-                            <p class="text-center font-semibold mt-2 text-brand-green">Samoosas</p>
-                        </div>
-                         <div>
-                            <img src="samoosa-and-springroll-platter.jpg" alt="A samoosa and springroll platter" class="rounded-lg shadow-md aspect-square object-cover w-full h-full">
-                             <p class="text-center font-semibold mt-2 text-brand-green">Platters</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="hidden md:flex items-center space-x-6 text-brand-gold/90">
+                <span><i class="fa-solid fa-location-dot text-amber-400 mr-1.5"></i>Kempton Park, Gauteng</span>
+                <a href="https://wa.me/27714575636" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors font-semibold">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i>071 457 5636
+                </a>
             </div>
-   <!-- ## ABOUT US CONTENT ## -->
-            <div id="about-content" class="tab-content hidden">
-                 <div class="bg-white/60 p-6 md:p-8 rounded-xl shadow-lg text-center">
-                    <h2 class="text-3xl font-bold text-black mb-4">About Nikki's Curry & All</h2>
-                    <div class="max-w-2xl mx-auto text-lg text-gray-700 text-left space-y-4">
-                        <p>
-                            Welcome to Nikki's Curry & All, where we bring the heart of Durban's authentic Indian cuisine right to your table in Kempton Park. Our journey started with a simple passion: to share the rich, vibrant, and unforgettable flavours of traditional home-cooked curries. 
-                        </p>
-                        <!-- The slogan is now highlighted with a light green background -->
-                        <p class="font-semibold text-center text-xl text-brand-green mt-4 bg-brand-green/10 p-3 rounded-lg">
-                            "From my home to yours."
-                        </p>
-                        <p>
-                            This isn't just a slogan for us; it's our promise. Every dish is prepared with the same love, care, and attention to detail that you would find in our own family kitchen. We use only the freshest ingredients and time-honoured recipes passed down through generations to create meals that are bursting with flavour and warmth. 
-                        </p>
-                        <p>
-                            Whether you're craving a classic lamb curry, a creamy butter chicken, or our famous samoosas, we invite you to experience a taste of home with us.
-                        </p>
-                    </div>
-                 </div>
-            </div>
-
-
-            <!-- ## CONTACT / ORDER INFO CONTENT ## -->
-            <div id="contact-content" class="tab-content hidden">
-                 <div class="bg-white/60 p-6 md:p-8 rounded-xl shadow-lg text-center">
-                    <h2 class="text-3xl font-bold text-black mb-4">How to Order</h2>
-                    <p class="text-lg max-w-2xl mx-auto text-gray-700">
-                        We prepare all our meals fresh to order. Please place your orders the day before or at minimum give 4 hours notice to ensure we have sufficent time to prepare all food.
-                    </p>
-                    <div class="mt-6">
-                        <p class="text-xl font-semibold">Send your order via WhatsApp to:</p>
-                        <a href="https://wa.me/27714575636" class="inline-block bg-accent-red text-white text-3xl font-bold my-4 px-8 py-4 rounded-lg shadow-lg hover:bg-red-700 transition-colors">
-                           071 457 5636
-                        </a>
-                        <p class="mt-4 font-semibold">We accept Cash and Card payments on collection/delivery.</p>
-                    </div>
-                 </div>
-            </div>
-
-        </main>
-
-        <!-- ===== FOOTER ===== -->
-        <footer class="text-center mt-12 pb-4">
-            <p class="text-brand-green/70">&copy; 2025 Nikki's Curry & All. All Rights Reserved.</p>
-        </footer>
+        </div>
     </div>
 
+    <!-- ===== STICKY GLASSMORPHISM NAVBAR ===== -->
+    <header class="sticky top-0 z-40 bg-brand-cream/90 backdrop-blur-md border-b border-brand-olive/15 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Brand Logo (Uses local company-logo.png if present, or falls back to luxury SVG emblem) -->
+            <a href="#" onclick="switchView('all'); return false;" class="flex items-center gap-3 group focus:outline-none">
+                <img 
+                    src="company-logo.png" 
+                    alt="Nikki's Curry & All Logo" 
+                    class="h-14 w-auto object-contain rounded-lg"
+                    onerror="this.style.display='none'; document.getElementById('fallback-brand-logo').style.display='flex';"
+                >
+                <!-- Automatic High-End SVG Fallback Emblem -->
+                <div id="fallback-brand-logo" style="display: none;" class="items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-olive to-brand-olive-dark flex items-center justify-center text-brand-gold shadow-md border border-brand-gold/30 group-hover:scale-105 transition-transform">
+                        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-1.2 2.4-3 3.6-3 6a3 3 0 006 0c0-2.4-1.8-3.6-3-6z" fill="#D97706" stroke="none"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 13h16a7 7 0 01-7 7h-2a7 7 0 01-7-7z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2 13h20M7 21h10" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif text-xl sm:text-2xl font-bold text-brand-olive-dark tracking-tight block leading-none">
+                            Nikki's Curry & All
+                        </span>
+                        <span class="text-[11px] uppercase tracking-widest text-brand-olive font-semibold block mt-1">
+                            From My Home To Yours
+                        </span>
+                    </div>
+                </div>
+            </a>
 
-    <!-- ===== JAVASCRIPT FOR TABS ===== -->
+            <!-- Desktop Navigation Tabs -->
+            <nav class="hidden md:flex items-center bg-brand-gold/60 p-1.5 rounded-full border border-brand-olive/15">
+                <button onclick="switchView('all')" data-nav="all" class="nav-tab-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-brand-olive text-brand-gold shadow-sm">
+                    Explore All
+                </button>
+                <button onclick="switchView('menu')" data-nav="menu" class="nav-tab-btn px-5 py-2 rounded-full text-sm font-semibold text-brand-olive-dark hover:text-brand-olive transition-all">
+                    Our Menu
+                </button>
+                <button onclick="switchView('events')" data-nav="events" class="nav-tab-btn px-5 py-2 rounded-full text-sm font-semibold text-brand-olive-dark hover:text-brand-olive transition-all">
+                    Markets & Events
+                </button>
+                <button onclick="switchView('gallery')" data-nav="gallery" class="nav-tab-btn px-5 py-2 rounded-full text-sm font-semibold text-brand-olive-dark hover:text-brand-olive transition-all">
+                    Food Gallery
+                </button>
+                <button onclick="switchView('about')" data-nav="about" class="nav-tab-btn px-5 py-2 rounded-full text-sm font-semibold text-brand-olive-dark hover:text-brand-olive transition-all">
+                    Our Story
+                </button>
+                <button onclick="switchView('contact')" data-nav="contact" class="nav-tab-btn px-5 py-2 rounded-full text-sm font-semibold text-brand-olive-dark hover:text-brand-olive transition-all">
+                    How to Order
+                </button>
+            </nav>
+
+            <!-- Action Buttons: Live Order Cart & Direct WhatsApp -->
+            <div class="flex items-center gap-2.5">
+                <button 
+                    onclick="toggleCartDrawer(true)" 
+                    id="header-cart-btn"
+                    class="relative inline-flex items-center gap-2.5 bg-brand-olive hover:bg-brand-olive-dark text-brand-gold px-4 py-2.5 rounded-xl font-semibold text-sm shadow-md hover:shadow-lg transition-all active:scale-95"
+                >
+                    <i class="fa-solid fa-utensils text-amber-300"></i>
+                    <span class="hidden sm:inline">Your Order</span>
+                    <span id="header-cart-count" class="bg-accent-red text-white text-xs font-bold px-2 py-0.5 rounded-full min-w-[22px] text-center">
+                        0
+                    </span>
+                    <span id="header-cart-total" class="hidden lg:inline text-xs font-bold text-brand-gold/90 border-l border-brand-gold/25 pl-2">
+                        R 0
+                    </span>
+                </button>
+
+                <a 
+                    href="https://wa.me/27714575636" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="Chat on WhatsApp"
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition-all"
+                >
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Quick-Switch Tab Bar -->
+        <div class="md:hidden flex items-center justify-around bg-brand-cream border-t border-brand-olive/10 px-2 py-1.5 overflow-x-auto no-scrollbar">
+            <button onclick="switchView('all')" data-nav="all" class="nav-tab-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-brand-olive text-brand-gold whitespace-nowrap">
+                All
+            </button>
+            <button onclick="switchView('menu')" data-nav="menu" class="nav-tab-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-brand-olive-dark whitespace-nowrap">
+                Menu
+            </button>
+            <button onclick="switchView('events')" data-nav="events" class="nav-tab-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-brand-olive-dark whitespace-nowrap">
+                Markets & Events
+            </button>
+            <button onclick="switchView('gallery')" data-nav="gallery" class="nav-tab-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-brand-olive-dark whitespace-nowrap">
+                Gallery
+            </button>
+            <button onclick="switchView('about')" data-nav="about" class="nav-tab-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-brand-olive-dark whitespace-nowrap">
+                About Us
+            </button>
+            <button onclick="switchView('contact')" data-nav="contact" class="nav-tab-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-brand-olive-dark whitespace-nowrap">
+                Order Info
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== MAIN PAGE CONTAINER ===== -->
+    <main class="flex-grow">
+
+        <!-- ===== HERO BANNER SECTION ===== -->
+        <section id="hero-section" class="relative overflow-hidden bg-brand-olive-dark text-brand-cream">
+            <!-- Background Atmospheric Image + Warm Olive/Spice Gradient Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img 
+                    src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1800&q=85" 
+                    alt="Authentic Indian Curry Feast" 
+                    class="w-full h-full object-cover object-center opacity-30 scale-105"
+                >
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-olive-dark via-brand-olive-dark/90 to-brand-olive/75"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 lg:py-24">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Left Hero Copy -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-gold text-xs sm:text-sm font-semibold tracking-wide">
+                            <i class="fa-solid fa-pepper-hot text-accent-red"></i>
+                            <span>Authentic Durban Indian Cuisine • Kempton Park</span>
+                        </div>
+
+                        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-gold leading-tight">
+                            Rich, Slow-Simmered Durban Flavours, <span class="italic font-normal text-amber-300">From My Home To Yours.</span>
+                        </h1>
+
+                        <p class="text-base sm:text-lg text-brand-cream/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Experience time-honoured family recipes crafted fresh to order. From hearty Lamb Curry and loaded Bunny Chows to fragrant Breyani and crisp golden Samoosas.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <button 
+                                onclick="scrollToSection('menu-section')" 
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-accent-red hover:bg-accent-red-dark text-white font-bold px-7 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all text-base group"
+                            >
+                                <span>Explore Menu & Order</span>
+                                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <a 
+                                href="https://wa.me/27714575636?text=Hi%20Nikki's%20Curry%20%26%20All!%20I%20would%20like%20to%20place%20an%20order." 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-brand-gold/15 hover:bg-brand-gold/25 text-brand-gold border border-brand-gold/40 font-semibold px-6 py-4 rounded-xl transition-all text-base"
+                            >
+                                <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                                <span>WhatsApp 071 457 5636</span>
+                            </a>
+                        </div>
+
+                        <!-- Key Trust Badges -->
+                        <div class="pt-4 grid grid-cols-3 gap-3 max-w-lg mx-auto lg:mx-0 border-t border-brand-gold/15 text-left">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-lg bg-brand-gold/10 flex items-center justify-center text-amber-300 shrink-0">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div class="text-xs">
+                                    <p class="font-bold text-brand-gold">Freshly Made</p>
+                                    <p class="text-brand-cream/75">4h / Day Before</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-lg bg-brand-gold/10 flex items-center justify-center text-amber-300 shrink-0">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                </div>
+                                <div class="text-xs">
+                                    <p class="font-bold text-brand-gold">Easy Payment</p>
+                                    <p class="text-brand-cream/75">Cash or Card</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-lg bg-brand-gold/10 flex items-center justify-center text-amber-300 shrink-0">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div class="text-xs">
+                                    <p class="font-bold text-brand-gold">Home Cooked</p>
+                                    <p class="text-brand-cream/75">100% Authentic</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Showcase Card (Displays user's logo if available or featured dish card) -->
+                    <div class="lg:col-span-5">
+                        <div class="relative mx-auto max-w-md bg-brand-cream/10 backdrop-blur-md p-4 sm:p-5 rounded-3xl border border-brand-gold/25 shadow-warm-lg">
+                            <!-- Optional local logo banner inside hero card if user has company-logo.png -->
+                            <div class="bg-brand-olive p-3 rounded-2xl mb-4 text-center shadow-inner">
+                                <img 
+                                    src="company-logo.png" 
+                                    alt="Nikki's Curry & All - Authentic Durban Indian Cuisine" 
+                                    class="mx-auto max-h-28 w-auto object-contain rounded-lg"
+                                    onerror="this.parentElement.style.display='none';"
+                                >
+                            </div>
+
+                            <div class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-lg group">
+                                <img 
+                                    src="curry-1.jpg" 
+                                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=900&q=85';" 
+                                    alt="Signature Durban Lamb Curry" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                >
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                <div class="absolute top-3 left-3 bg-accent-red text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                                    House Favourite
+                                </div>
+                                <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white">
+                                    <div>
+                                        <p class="text-xs uppercase tracking-wider text-amber-300 font-semibold">Signature Dish</p>
+                                        <h3 class="font-serif text-xl font-bold">Authentic Lamb Curry</h3>
+                                        <p class="text-xs text-gray-200">Served with Rice, Roti, or as a Bunny Chow</p>
+                                    </div>
+                                    <span class="bg-brand-gold text-brand-olive-dark font-extrabold px-3 py-1.5 rounded-xl text-sm shadow">
+                                        R 150
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MAIN CONTENT WRAPPER ===== -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+
+            <!-- ==========================================
+                 1. INTERACTIVE MENU SECTION
+                 ========================================== -->
+            <section id="menu-section" class="view-section animate-fade-in">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-8">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-brand-olive bg-brand-olive/10 px-3.5 py-1 rounded-full mb-2">
+                        Traditional Home-Cooked Menu
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-olive-dark">
+                        Our Authentic Durban Menu
+                    </h2>
+                    <p class="mt-2 text-brand-dark/80 text-sm sm:text-base">
+                        Select your dishes below to build your WhatsApp order, or message <a href="https://wa.me/27714575636" target="_blank" class="font-bold text-accent-red underline">071 457 5636</a> directly (please order the day before or at least 4 hours in advance).
+                    </p>
+                </div>
+
+                <!-- Important Curry Note Banner -->
+                <div class="bg-gradient-to-r from-brand-olive to-brand-olive-dark text-brand-gold rounded-2xl p-4 sm:p-5 mb-8 shadow-warm flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3.5 text-center sm:text-left">
+                        <div class="w-11 h-11 rounded-xl bg-brand-gold/15 flex items-center justify-center text-amber-300 text-xl shrink-0 hidden sm:flex">
+                            <i class="fa-solid fa-bowl-rice"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base sm:text-lg text-white">
+                                All Curries Served with Your Choice of <span class="text-amber-300 underline decoration-amber-300/60">Rice or Roti</span>
+                            </h3>
+                            <p class="text-xs sm:text-sm text-brand-gold/90">
+                                Craving a traditional Durban Bunny? Select <strong>Bunny Chow (+R 10)</strong> on any curry item below!
+                            </p>
+                        </div>
+                    </div>
+                    <span class="bg-accent-red text-white text-xs font-extrabold uppercase tracking-wider px-3.5 py-2 rounded-xl shrink-0 shadow">
+                        +R 10 For Bunny Chows
+                    </span>
+                </div>
+
+                <!-- Controls: Category Filter Pills & Search Input -->
+                <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8">
+                    <!-- Category Pills -->
+                    <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                        <button onclick="filterMenuCategory('all')" data-cat="all" class="menu-cat-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all bg-brand-olive text-brand-gold shadow-sm whitespace-nowrap">
+                            All Dishes (21)
+                        </button>
+                        <button onclick="filterMenuCategory('curries')" data-cat="curries" class="menu-cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition-all bg-brand-cream text-brand-olive-dark hover:bg-brand-olive/10 border border-brand-olive/15 whitespace-nowrap">
+                            <i class="fa-solid fa-fire-flame-curved text-accent-red mr-1.5"></i>Curries (10)
+                        </button>
+                        <button onclick="filterMenuCategory('breyani')" data-cat="breyani" class="menu-cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition-all bg-brand-cream text-brand-olive-dark hover:bg-brand-olive/10 border border-brand-olive/15 whitespace-nowrap">
+                            <i class="fa-solid fa-utensils text-amber-600 mr-1.5"></i>Breyani, Rolls & More (5)
+                        </button>
+                        <button onclick="filterMenuCategory('sides')" data-cat="sides" class="menu-cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition-all bg-brand-cream text-brand-olive-dark hover:bg-brand-olive/10 border border-brand-olive/15 whitespace-nowrap">
+                            <i class="fa-solid fa-Cookie-bite text-emerald-700 mr-1.5"></i>Sides & Snacks (6)
+                        </button>
+                    </div>
+
+                    <!-- Instant Dish Search -->
+                    <div class="relative w-full md:w-72">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-olive/60 text-sm"></i>
+                        <input 
+                            type="text" 
+                            id="menu-search-input" 
+                            oninput="handleMenuSearch(this.value)"
+                            placeholder="Search curry, breyani, samoosa..." 
+                            class="w-full pl-10 pr-9 py-2.5 bg-brand-cream border border-brand-olive/20 rounded-xl text-sm text-brand-dark placeholder-brand-olive/50 focus:outline-none focus:ring-2 focus:ring-brand-olive"
+                        >
+                        <button 
+                            id="clear-search-btn"
+                            onclick="clearMenuSearch()" 
+                            class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-dark text-xs"
+                        >
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Menu Grid Container (Populated by JS with all exact items & prices) -->
+                <div id="menu-items-container" class="space-y-12"></div>
+
+            </section>
+
+            <!-- ==========================================
+                 1B. MARKETS & EVENTS SECTION (FILL IN TEMPLATES BELOW)
+                 ========================================== -->
+            <section id="events-section" class="view-section animate-fade-in">
+                <div class="bg-brand-cream/85 border border-brand-olive/15 rounded-3xl p-6 sm:p-10 shadow-warm">
+                    
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-brand-olive bg-brand-olive/10 px-3.5 py-1 rounded-full mb-2">
+                            Pop-Up Stalls & Markets
+                        </span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-olive-dark">
+                            Markets & Events
+                        </h2>
+                        <p class="mt-2 text-brand-dark/75 text-sm sm:text-base">
+                            Come visit our food stall in person! Here is where you can find Nikki's Curry & All at upcoming local markets and events.
+                        </p>
+                    </div>
+
+                    <!-- =================================================================
+                         MARKET TEMPLATES:
+                         Copy, paste, or edit any <article> block below to update your markets!
+                         ================================================================= -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                        <!-- ===== MARKET TEMPLATE CARD 1 ===== -->
+                        <article class="bg-white rounded-2xl p-6 border border-brand-olive/15 shadow-sm hover:shadow-warm transition-all flex flex-col justify-between">
+                            <div>
+                                <!-- Top Date Badge & Status Tag -->
+                                <div class="flex items-start justify-between gap-3 mb-4">
+                                    <div class="bg-brand-olive text-brand-gold px-3.5 py-2 rounded-xl text-center shrink-0 shadow-sm">
+                                        <!-- EDIT MONTH & DAY HERE -->
+                                        <span class="block text-[10px] font-bold uppercase tracking-widest">NOV</span>
+                                        <span class="block text-2xl font-extrabold leading-none mt-0.5">07</span>
+                                    </div>
+                                    <!-- EDIT BADGE LABEL HERE -->
+                                    <span class="bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold px-3 py-1 rounded-full">
+                                        Upcoming Market
+                                    </span>
+                                </div>
+
+                                <!-- EDIT MARKET NAME HERE -->
+                                <h3 class="font-serif text-xl font-bold text-brand-olive-dark">
+                                    [Market Name Here]
+                                </h3>
+
+                                <!-- EDIT DAY, TIME & LOCATION HERE -->
+                                <div class="mt-3 space-y-1.5 text-xs sm:text-sm text-brand-dark/80">
+                                    <p class="flex items-center gap-2">
+                                        <i class="fa-regular fa-calendar text-brand-olive w-4 text-center"></i>
+                                        <span>Saturday, 7 November 2026</span>
+                                    </p>
+                                    <p class="flex items-center gap-2">
+                                        <i class="fa-regular fa-clock text-brand-olive w-4 text-center"></i>
+                                        <span>09:00 AM – 03:00 PM</span>
+                                    </p>
+                                    <p class="flex items-center gap-2">
+                                        <i class="fa-solid fa-location-dot text-accent-red w-4 text-center"></i>
+                                        <span class="font-semibold">[Market Location / Venue Address]</span>
+                                    </p>
+                                </div>
+
+                                <!-- EDIT STALL DESCRIPTION / MENU ITEMS HERE -->
+                                <div class="mt-4 bg-brand-gold/40 p-3 rounded-xl border border-brand-olive/10 text-xs text-brand-dark/85">
+                                    <strong class="text-brand-olive-dark block mb-0.5">What We're Serving:</strong>
+                                    Hot Bunny Chows, Lamb Curry, Crispy Samoosas & Chilli Bites.
+                                </div>
+                            </div>
+
+                            <!-- Bottom Action Links (Edit Google Maps link or WhatsApp pre-order link if needed) -->
+                            <div class="mt-5 pt-4 border-t border-brand-olive/10 flex items-center gap-2">
+                                <a href="https://wa.me/27714575636?text=Hi%20Nikki!%20I%20would%20like%20to%20pre-order%20for%20collection%20at%20the%20market:" target="_blank" rel="noopener noreferrer" class="flex-1 bg-brand-olive hover:bg-brand-olive-dark text-brand-gold font-bold text-xs py-2.5 px-3 rounded-xl text-center transition-all">
+                                    <i class="fa-brands fa-whatsapp mr-1"></i>Pre-Order
+                                </a>
+                                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="bg-brand-cream hover:bg-brand-gold text-brand-olive-dark border border-brand-olive/20 font-bold text-xs py-2.5 px-3 rounded-xl transition-all">
+                                    <i class="fa-solid fa-map-location-dot mr-1"></i>Map
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- ===== MARKET TEMPLATE CARD 2 ===== -->
+                        <article class="bg-white rounded-2xl p-6 border border-brand-olive/15 shadow-sm hover:shadow-warm transition-all flex flex-col justify-between">
+                            <div>
+                                <!-- Top Date Badge & Status Tag -->
+                                <div class="flex items-start justify-between gap-3 mb-4">
+                                    <div class="bg-brand-olive text-brand-gold px-3.5 py-2 rounded-xl text-center shrink-0 shadow-sm">
+                                        <!-- EDIT MONTH & DAY HERE -->
+                                        <span class="block text-[10px] font-bold uppercase tracking-widest">NOV</span>
+                                        <span class="block text-2xl font-extrabold leading-none mt-0.5">14</span>
+                                    </div>
+                                    <!-- EDIT BADGE LABEL HERE -->
+                                    <span class="bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold px-3 py-1 rounded-full">
+                                        Upcoming Market
+                                    </span>
+                                </div>
+
+                                <!-- EDIT MARKET NAME HERE -->
+                                <h3 class="font-serif text-xl font-bold text-brand-olive-dark">
+                                    [Market Name Here]
+                                </h3>
+
+                                <!-- EDIT DAY, TIME & LOCATION HERE -->
+                                <div class="mt-3 space-y-1.5 text-xs sm:text-sm text-brand-dark/80">
+                                    <p class="flex items-center gap-2">
+                                        <i class="fa-regular fa-calendar text-brand-olive w-4 text-center"></i>
+                                        <span>Saturday, 14 November 2026</span>
+                                    </p>
+                                    <p class="flex items-center gap-2">
+                                        <i class="fa-regular fa-clock text-brand-olive w-4 text-center"></i>
+                                        <span>09:00 AM – 03:00 PM</span>
+                                    </p>
+                                    <p class="flex items-center gap-2">
+                                        <i class="fa-solid fa-location-dot text-accent-red w-4 text-center"></i>
+                                        <span class="font-semibold">[Market Location / Venue Address]</span>
+                                    </p>
+                                </div>
+
+                                <!-- EDIT STALL DESCRIPTION / MENU ITEMS HERE -->
+                                <div class="mt-4 bg-brand-gold/40 p-3 rounded-xl border border-brand-olive/10 text-xs text-brand-dark/85">
+                                    <strong class="text-brand-olive-dark block mb-0.5">What We're Serving:</strong>
+                                    Butter Chicken, Breyani, Roti Rolls & Samoosa Dozen Packs.
+                                </div>
+                            </div>
+
+                            <!-- Bottom Action Links -->
+                            <div class="mt-5 pt-4 border-t border-brand-olive/10 flex items-center gap-2">
+                                <a href="https://wa.me/27714575636?text=Hi%20Nikki!%20I%20would%20like%20to%20pre-order%20for%20collection%20at%20the%20market:" target="_blank" rel="noopener noreferrer" class="flex-1 bg-brand-olive hover:bg-brand-olive-dark text-brand-gold font-bold text-xs py-2.5 px-3 rounded-xl text-center transition-all">
+                                    <i class="fa-brands fa-whatsapp mr-1"></i>Pre-Order
+                                </a>
+                                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="bg-brand-cream hover:bg-brand-gold text-brand-olive-dark border border-brand-olive/20 font-bold text-xs py-2.5 px-3 rounded-xl transition-all">
+                                    <i class="fa-solid fa-map-location-dot mr-1"></i>Map
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- ===== MARKET TEMPLATE CARD 3 ===== -->
+                        <article class="bg-white rounded-2xl p-6 border border-brand-olive/15 shadow-sm hover:shadow-warm transition-all flex flex-col justify-between">
+                            <div>
+                                <!-- Top Date Badge & Status Tag -->
+                                <div class="flex items-start justify-between gap-3 mb-4">
+                                    <div class="bg-brand-olive text-brand-gold px-3.5 py-2 rounded-xl text-center shrink-0 shadow-sm">
+                                        <!-- EDIT MONTH & DAY HERE -->
+                                        <span class="block text-[10px] font-bold uppercase tracking-widest">NOV</span>
+                                        <span class="block text-2xl font-extrabold leading-none mt-0.5">28</span>
+                                    </div>
+                                    <!-- EDIT BADGE LABEL HERE -->
+                                    <span class="bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold px-3 py-1 rounded-full">
+                                        Upcoming Market
+                                    </span>
+                                </div>
+
+                                <!-- EDIT MARKET NAME HERE -->
+                                <h3 class="font-serif text-xl font-bold text-brand-olive-dark">
+                                    [Market Name Here]
+                                </h3>
+
+                                <!-- EDIT DAY, TIME & LOCATION HERE -->
+                                <div class="mt-3 space-y-1.5 text-xs sm:text-sm text-brand-dark/80">
+                                    <p class="flex items-center gap-2">
+                                        <i class="fa-regular fa-calendar text-brand-olive w-4 text-center"></i>
+                                        <span>Saturday, 28 November 2026</span>
+                                    </p>
+                                    <p class="flex items-center gap-2">
+                                        <i class="fa-regular fa-clock text-brand-olive w-4 text-center"></i>
+                                        <span>10:00 AM – 04:00 PM</span>
+                                    </p>
+                                    <p class="flex items-center gap-2">
+                                        <i class="fa-solid fa-location-dot text-accent-red w-4 text-center"></i>
+                                        <span class="font-semibold">[Market Location / Venue Address]</span>
+                                    </p>
+                                </div>
+
+                                <!-- EDIT STALL DESCRIPTION / MENU ITEMS HERE -->
+                                <div class="mt-4 bg-brand-gold/40 p-3 rounded-xl border border-brand-olive/10 text-xs text-brand-dark/85">
+                                    <strong class="text-brand-olive-dark block mb-0.5">What We're Serving:</strong>
+                                    Full Durban Curry Menu, Bunny Chows, Samoosas & Chilli Bites.
+                                </div>
+                            </div>
+
+                            <!-- Bottom Action Links -->
+                            <div class="mt-5 pt-4 border-t border-brand-olive/10 flex items-center gap-2">
+                                <a href="https://wa.me/27714575636?text=Hi%20Nikki!%20I%20would%20like%20to%20pre-order%20for%20collection%20at%20the%20market:" target="_blank" rel="noopener noreferrer" class="flex-1 bg-brand-olive hover:bg-brand-olive-dark text-brand-gold font-bold text-xs py-2.5 px-3 rounded-xl text-center transition-all">
+                                    <i class="fa-brands fa-whatsapp mr-1"></i>Pre-Order
+                                </a>
+                                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="bg-brand-cream hover:bg-brand-gold text-brand-olive-dark border border-brand-olive/20 font-bold text-xs py-2.5 px-3 rounded-xl transition-all">
+                                    <i class="fa-solid fa-map-location-dot mr-1"></i>Map
+                                </a>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 2. VISUAL FOOD GALLERY SECTION
+                 ========================================== -->
+            <section id="gallery-section" class="view-section animate-fade-in">
+                <div class="bg-brand-cream/85 border border-brand-olive/15 rounded-3xl p-6 sm:p-10 shadow-warm">
+                    
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-brand-olive bg-brand-olive/10 px-3.5 py-1 rounded-full mb-2">
+                            Feast Your Eyes
+                        </span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-olive-dark">
+                            From Our Kitchen Gallery
+                        </h2>
+                        <p class="mt-2 text-brand-dark/75 text-sm sm:text-base">
+                            Every dish is home-cooked from scratch using authentic Durban spices and fresh local ingredients. Click any photo to view closer.
+                        </p>
+                    </div>
+
+                    <!-- 8 Gallery Items Grid (Uses local filenames first, with instant HD Unsplash fallback) -->
+                    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Populated dynamically via JS so Lightbox & Fallbacks work seamlessly -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 3. ABOUT US SECTION
+                 ========================================== -->
+            <section id="about-section" class="view-section animate-fade-in">
+                <div class="bg-brand-cream/90 border border-brand-olive/15 rounded-3xl overflow-hidden shadow-warm">
+                    <div class="grid lg:grid-cols-12">
+                        
+                        <!-- Left Editorial Visual Column -->
+                        <div class="lg:col-span-5 relative min-h-[300px] lg:min-h-full bg-brand-olive-dark">
+                            <img 
+                                src="briyani.jpg" 
+                                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1000&q=85';"
+                                alt="Traditional Durban Indian Cooking" 
+                                class="w-full h-full object-cover opacity-85"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-olive-dark via-brand-olive-dark/30 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 text-brand-gold">
+                                <div class="bg-brand-olive-dark/90 backdrop-blur-md p-5 rounded-2xl border border-brand-gold/25 shadow-lg">
+                                    <p class="font-serif italic text-xl sm:text-2xl text-amber-300 mb-1">
+                                        "From my home to yours."
+                                    </p>
+                                    <p class="text-xs uppercase tracking-widest text-brand-gold/80 font-semibold">
+                                        — Nikki's Curry & All Promise
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Story Content Column -->
+                        <div class="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-center space-y-6">
+                            <div>
+                                <span class="inline-block text-xs font-bold uppercase tracking-widest text-brand-olive bg-brand-olive/10 px-3.5 py-1 rounded-full mb-2">
+                                    Our Story & Heritage
+                                </span>
+                                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-olive-dark">
+                                    About Nikki's Curry & All
+                                </h2>
+                            </div>
+
+                            <div class="space-y-4 text-brand-dark/85 text-base sm:text-lg leading-relaxed">
+                                <p>
+                                    Welcome to <strong>Nikki's Curry & All</strong>, where we bring the heart of Durban's authentic Indian cuisine right to your table in <strong>Kempton Park</strong>. Our journey started with a simple passion: to share the rich, vibrant, and unforgettable flavours of traditional home-cooked curries.
+                                </p>
+
+                                <div class="bg-brand-olive/10 border-l-4 border-brand-olive p-4 rounded-r-xl my-4">
+                                    <p class="font-serif font-bold text-xl text-brand-olive-dark">
+                                        "From my home to yours."
+                                    </p>
+                                    <p class="text-sm text-brand-olive-dark/80 mt-1">
+                                        This isn't just a slogan for us; it's our promise on every single plate.
+                                    </p>
+                                </div>
+
+                                <p>
+                                    Every dish is prepared with the same love, care, and attention to detail that you would find in our own family kitchen. We use only the freshest ingredients and time-honoured recipes passed down through generations to create meals that are bursting with flavour and warmth.
+                                </p>
+                                <p>
+                                    Whether you're craving a classic lamb curry, a creamy butter chicken, or our famous samoosas, we invite you to experience a taste of home with us.
+                                </p>
+                            </div>
+
+                            <!-- 3 Pillar Cards -->
+                            <div class="grid sm:grid-cols-3 gap-4 pt-4 border-t border-brand-olive/15">
+                                <div class="bg-brand-gold/40 p-4 rounded-2xl border border-brand-olive/10">
+                                    <i class="fa-solid fa-mortar-pestle text-brand-olive text-xl mb-2"></i>
+                                    <h4 class="font-bold text-sm text-brand-olive-dark">Durban Spices</h4>
+                                    <p class="text-xs text-brand-dark/70 mt-0.5">Authentic masala blends & traditional family recipes.</p>
+                                </div>
+                                <div class="bg-brand-gold/40 p-4 rounded-2xl border border-brand-olive/10">
+                                    <i class="fa-solid fa-leaf text-brand-olive text-xl mb-2"></i>
+                                    <h4 class="font-bold text-sm text-brand-olive-dark">Fresh Ingredients</h4>
+                                    <p class="text-xs text-brand-dark/70 mt-0.5">Prepared fresh to order—never mass-produced.</p>
+                                </div>
+                                <div class="bg-brand-gold/40 p-4 rounded-2xl border border-brand-olive/10">
+                                    <i class="fa-solid fa-house-chimney-heart text-brand-olive text-xl mb-2"></i>
+                                    <h4 class="font-bold text-sm text-brand-olive-dark">Made With Love</h4>
+                                    <p class="text-xs text-brand-dark/70 mt-0.5">Generous portions cooked straight from our home kitchen.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 4. HOW TO ORDER / CONTACT INFO SECTION
+                 ========================================== -->
+            <section id="contact-section" class="view-section animate-fade-in">
+                <div class="bg-gradient-to-br from-brand-olive-dark to-brand-olive text-brand-cream rounded-3xl p-6 sm:p-10 lg:p-12 shadow-warm-lg relative overflow-hidden">
+                    
+                    <div class="relative z-10 grid lg:grid-cols-12 gap-10 items-center">
+                        
+                        <!-- Left 3-Step Ordering Guide -->
+                        <div class="lg:col-span-7 space-y-6">
+                            <div>
+                                <span class="inline-block text-xs font-bold uppercase tracking-widest text-amber-300 bg-brand-gold/10 px-3.5 py-1 rounded-full mb-2 border border-brand-gold/20">
+                                    Simple & Direct Ordering
+                                </span>
+                                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-gold">
+                                    How to Place Your Order
+                                </h2>
+                                <p class="mt-2 text-brand-cream/85 text-base leading-relaxed">
+                                    We prepare all our meals fresh to order. Please place your orders <strong>the day before</strong> or at minimum give <strong>4 hours notice</strong> to ensure we have sufficient time to prepare all food to perfection.
+                                </p>
+                            </div>
+
+                            <!-- 3 Steps -->
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4 bg-brand-gold/10 p-4 rounded-2xl border border-brand-gold/15">
+                                    <div class="w-9 h-9 rounded-xl bg-amber-400 text-brand-olive-dark font-extrabold flex items-center justify-center shrink-0">
+                                        1
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-brand-gold text-base">Select Your Dishes</h3>
+                                        <p class="text-sm text-brand-cream/80 mt-0.5">
+                                            Use our interactive menu above to add your curries (with Rice, Roti, or Bunny Chow), breyani, and snacks to your order list.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4 bg-brand-gold/10 p-4 rounded-2xl border border-brand-gold/15">
+                                    <div class="w-9 h-9 rounded-xl bg-amber-400 text-brand-olive-dark font-extrabold flex items-center justify-center shrink-0">
+                                        2
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-brand-gold text-base">Send via WhatsApp (Day Before / 4 Hrs Notice)</h3>
+                                        <p class="text-sm text-brand-cream/80 mt-0.5">
+                                            Click "Send Order via WhatsApp" in your cart or message us directly at <strong>071 457 5636</strong> with your order and preferred time.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4 bg-brand-gold/10 p-4 rounded-2xl border border-brand-gold/15">
+                                    <div class="w-9 h-9 rounded-xl bg-amber-400 text-brand-olive-dark font-extrabold flex items-center justify-center shrink-0">
+                                        3
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-brand-gold text-base">Pay on Collection or Delivery</h3>
+                                        <p class="text-sm text-brand-cream/80 mt-0.5">
+                                            We accept both <strong>Cash and Card payments</strong> on collection or delivery in Kempton Park.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Direct WhatsApp Callout Card -->
+                        <div class="lg:col-span-5">
+                            <div class="bg-brand-cream text-brand-dark p-6 sm:p-8 rounded-3xl shadow-2xl border-2 border-brand-gold text-center space-y-5">
+                                <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-sm">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-widest text-brand-olive">Direct Order Line</p>
+                                    <h3 class="font-serif text-2xl font-bold text-brand-olive-dark mt-1">Send Your Order via WhatsApp</h3>
+                                </div>
+
+                                <a 
+                                    href="https://wa.me/27714575636?text=Hi%20Nikki's%20Curry%20%26%20All!%20I%20would%20like%20to%20place%20an%20order:" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    class="block w-full bg-accent-red hover:bg-accent-red-dark text-white text-2xl sm:text-3xl font-extrabold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+                                >
+                                    071 457 5636
+                                </a>
+
+                                <div class="flex items-center justify-center gap-2 text-xs text-brand-olive font-semibold">
+                                    <button onclick="copyPhoneNumber()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-gold/60 hover:bg-brand-gold transition-colors">
+                                        <i class="fa-regular fa-copy"></i>
+                                        <span id="copy-phone-label">Copy Phone Number</span>
+                                    </button>
+                                </div>
+
+                                <div class="pt-4 border-t border-brand-olive/15 space-y-2 text-sm">
+                                    <p class="font-bold text-brand-olive-dark flex items-center justify-center gap-2">
+                                        <i class="fa-solid fa-wallet text-brand-amber"></i>
+                                        <span>Cash & Card Accepted on Collection/Delivery</span>
+                                    </p>
+                                    <p class="text-xs text-gray-600">
+                                        Based in Kempton Park • Authentic Home-Cooked Durban Cuisine
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ===== FLOATING MOBILE / BOTTOM ORDER BAR (Appears when items are in cart) ===== -->
+    <div id="floating-cart-bar" class="fixed bottom-4 inset-x-4 z-30 max-w-xl mx-auto hidden">
+        <div class="bg-brand-olive-dark text-brand-gold p-3.5 sm:p-4 rounded-2xl shadow-2xl border border-brand-gold/30 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-accent-red text-white font-extrabold flex items-center justify-center text-sm" id="floating-cart-count">
+                    0
+                </div>
+                <div>
+                    <p class="text-xs text-brand-gold/80 font-medium">Estimated Order Total</p>
+                    <p class="text-lg font-extrabold text-white leading-tight" id="floating-cart-total">R 0</p>
+                </div>
+            </div>
+            <button 
+                onclick="toggleCartDrawer(true)" 
+                class="bg-brand-gold hover:bg-white text-brand-olive-dark font-extrabold px-5 py-2.5 rounded-xl text-sm shadow transition-all flex items-center gap-2"
+            >
+                <span>Review & WhatsApp Order</span>
+                <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE-OVER WHATSAPP ORDER DRAWER ===== -->
+    <div id="cart-drawer-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity" onclick="toggleCartDrawer(false)"></div>
+    <aside id="cart-drawer" class="fixed top-0 right-0 z-50 h-full w-full max-w-md bg-brand-cream shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        
+        <!-- Drawer Header -->
+        <div class="bg-brand-olive-dark text-brand-gold p-5 flex items-center justify-between border-b border-brand-gold/20">
+            <div class="flex items-center gap-3">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-2xl"></i>
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-white leading-none">Your WhatsApp Order</h3>
+                    <p class="text-xs text-brand-gold/80 mt-1">Nikki's Curry & All • 071 457 5636</p>
+                </div>
+            </div>
+            <button onclick="toggleCartDrawer(false)" class="w-9 h-9 rounded-xl bg-brand-gold/10 hover:bg-brand-gold/20 text-brand-gold flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Body: Items List + Customer Details -->
+        <div class="flex-1 overflow-y-auto p-5 space-y-6">
+            
+            <!-- Cart Items List -->
+            <div id="cart-items-list" class="space-y-3">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Customer Order Details Form (For pre-filling WhatsApp message) -->
+            <div id="cart-customer-form" class="bg-brand-gold/40 p-4 rounded-2xl border border-brand-olive/15 space-y-3.5">
+                <h4 class="font-bold text-xs uppercase tracking-wider text-brand-olive-dark flex items-center gap-1.5">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Order Details (Optional for WhatsApp)</span>
+                </h4>
+
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark mb-1">Your Name</label>
+                    <input 
+                        type="text" 
+                        id="order-customer-name" 
+                        placeholder="e.g., Priya / David" 
+                        class="w-full px-3.5 py-2 rounded-xl bg-white border border-brand-olive/20 text-sm focus:outline-none focus:ring-2 focus:ring-brand-olive"
+                    >
+                </div>
+
+                <div class="grid grid-cols-2 gap-2.5">
+                    <div>
+                        <label class="block text-xs font-semibold text-brand-dark mb-1">Collection or Delivery</label>
+                        <select id="order-fulfillment" class="w-full px-3 py-2 rounded-xl bg-white border border-brand-olive/20 text-sm focus:outline-none focus:ring-2 focus:ring-brand-olive">
+                            <option value="Collection">Collection</option>
+                            <option value="Delivery">Delivery (Kempton Park)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-brand-dark mb-1">Payment Method</label>
+                        <select id="order-payment" class="w-full px-3 py-2 rounded-xl bg-white border border-brand-olive/20 text-sm focus:outline-none focus:ring-2 focus:ring-brand-olive">
+                            <option value="Card">Card on Collection/Delivery</option>
+                            <option value="Cash">Cash on Collection/Delivery</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark mb-1">Preferred Day & Time (Min. 4 hrs / Day before)</label>
+                    <input 
+                        type="text" 
+                        id="order-datetime" 
+                        placeholder="e.g., Tomorrow at 5:30 PM" 
+                        class="w-full px-3.5 py-2 rounded-xl bg-white border border-brand-olive/20 text-sm focus:outline-none focus:ring-2 focus:ring-brand-olive"
+                    >
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark mb-1">Special Notes (Spice level, address, etc.)</label>
+                    <textarea 
+                        id="order-notes" 
+                        rows="2" 
+                        placeholder="e.g., Mild or Hot spice, extraservings..." 
+                        class="w-full px-3.5 py-2 rounded-xl bg-white border border-brand-olive/20 text-sm focus:outline-none focus:ring-2 focus:ring-brand-olive"
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Footer: Total & Send to WhatsApp Button -->
+        <div class="p-5 bg-white border-t border-brand-olive/15 space-y-3">
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-gray-600">Estimated Total:</span>
+                <span id="drawer-cart-total" class="text-2xl font-extrabold text-accent-red">R 0</span>
+            </div>
+            <button 
+                onclick="sendOrderToWhatsApp()" 
+                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2.5 text-base"
+            >
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Send Order via WhatsApp</span>
+            </button>
+            <button 
+                onclick="clearCart()" 
+                class="w-full text-xs text-gray-500 hover:text-accent-red font-semibold py-1 transition-colors"
+            >
+                Clear Order List
+            </button>
+        </div>
+    </aside>
+
+    <!-- ===== GALLERY LIGHTBOX MODAL ===== -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="relative max-w-3xl w-full bg-brand-cream rounded-3xl overflow-hidden shadow-2xl border border-brand-gold/30" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="aspect-[16/10] bg-brand-olive-dark overflow-hidden">
+                <img id="lightbox-img" src="" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-olive">Nikki's Kitchen Gallery</span>
+                    <h3 id="lightbox-title" class="font-serif text-2xl font-bold text-brand-olive-dark mt-0.5"></h3>
+                    <p id="lightbox-desc" class="text-sm text-brand-dark/80 mt-1"></p>
+                </div>
+                <button onclick="closeLightbox(); scrollToSection('menu-section');" class="bg-accent-red hover:bg-accent-red-dark text-white font-bold px-5 py-2.5 rounded-xl text-sm shrink-0 shadow">
+                    Order from Menu
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST NOTIFICATION ===== -->
+    <div id="toast-notification" class="fixed top-24 right-4 z-50 bg-brand-olive-dark text-brand-gold px-4 py-3 rounded-xl shadow-xl border border-brand-gold/30 flex items-center gap-3 transform translate-x-[150%] transition-transform duration-300">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toast-message" class="text-sm font-semibold">Added to your order!</span>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-brand-olive-dark text-brand-gold/80 border-t border-brand-gold/15 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-xl font-bold text-brand-gold">Nikki's Curry & All</p>
+                    <p class="text-xs text-brand-gold/70 mt-1">Authentic Durban Indian Cuisine • "From my home to yours" • Kempton Park</p>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-6 text-sm">
+                    <a href="#" onclick="switchView('menu'); return false;" class="hover:text-white transition-colors">Menu</a>
+                    <a href="#" onclick="switchView('events'); return false;" class="hover:text-white transition-colors">Markets & Events</a>
+                    <a href="#" onclick="switchView('gallery'); return false;" class="hover:text-white transition-colors">Gallery</a>
+                    <a href="#" onclick="switchView('about'); return false;" class="hover:text-white transition-colors">About Us</a>
+                    <a href="#" onclick="switchView('contact'); return false;" class="hover:text-white transition-colors">How to Order</a>
+                    <a href="https://wa.me/27714575636" target="_blank" rel="noopener noreferrer" class="text-emerald-400 font-semibold hover:underline">
+                        <i class="fa-brands fa-whatsapp mr-1"></i>071 457 5636
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-brand-gold/10 mt-6 pt-6 text-center text-xs text-brand-gold/60">
+                <p>&copy; 2026 Nikki's Curry & All. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== APPLICATION LOGIC & DATA ===== -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabLinks = document.querySelectorAll('.tab-link');
-            const tabContents = document.querySelectorAll('.tab-content');
+        // =========================================================================
+        // 1. EXACT MENU DATA FROM USER'S CODE (Preserving all items & R prices)
+        // =========================================================================
+        const MENU_DATA = [
+            // --- CURRIES (Served with Rice or Roti. Add R10 for Bunny Chows) ---
+            {
+                id: 'lamb-curry',
+                name: 'Lamb Curry',
+                price: 150,
+                category: 'curries',
+                badge: 'Bestseller',
+                description: 'Tender, slow-simmered bone-in Durban lamb curry infused with roasted masala, curry leaves, and soft potatoes.',
+                hasBunnyOption: true
+            },
+            {
+                id: 'beef-curry',
+                name: 'Beef Curry',
+                price: 130,
+                category: 'curries',
+                description: 'Rich and hearty home-style Durban beef curry cooked until melt-in-your-mouth tender in a fragrant gravy.',
+                hasBunnyOption: true
+            },
+            {
+                id: 'butter-chicken',
+                name: 'Butter Chicken',
+                price: 120,
+                category: 'curries',
+                badge: 'Crowd Favourite',
+                description: 'Succulent chicken fillets simmered in a velvety, mildly spiced tomato, butter, and fresh cream sauce.',
+                hasBunnyOption: true
+            },
+            {
+                id: 'chicken-curry-bone-in',
+                name: 'Chicken Curry (bone in)',
+                price: 130,
+                category: 'curries',
+                description: 'Traditional Durban bone-in chicken curry with soft potatoes and aromatic whole spices.',
+                hasBunnyOption: true
+            },
+            {
+                id: 'beans-curry',
+                name: 'Beans Curry',
+                price: 80,
+                category: 'curries',
+                badge: 'Vegetarian',
+                description: 'Classic Durban sugar beans curry cooked with soft potatoes, fresh garlic, ginger, and rich masala.',
+                hasBunnyOption: true
+            },
+            {
+                id: 'lamb-chops-chutney',
+                name: 'Lamb Chops Chutney',
+                price: 150,
+                category: 'curries',
+                badge: 'Chef Special',
+                description: 'Juicy lamb chops smothered in a tangy, spicy homemade Durban tomato and onion chutney.',
+                hasBunnyOption: true
+            },
+            {
+                id: 'mince-kebabs',
+                name: 'Mince Kebabs',
+                price: 100,
+                category: 'curries',
+                description: 'Seasoned, herb-spiced handmade mince kebabs simmered in a rich, savoury onion and tomato chutney gravy.',
+                hasBunnyOption: true
+            },
+            {
+                id: 'trotters-and-beans',
+                name: 'Trotters & Beans',
+                price: 100,
+                category: 'curries',
+                description: 'A true Durban delicacy—slow-braised, gelatinous trotters cooked with creamy sugar beans and bold spices.',
+                hasBunnyOption: true
+            },
+            {
+                id: 'potato-curry',
+                name: 'Potato Curry',
+                price: 80,
+                category: 'curries',
+                badge: 'Vegetarian',
+                description: 'Comforting, soft-braised Durban potato curry tempered with mustard seeds, curry leaves, and turmeric.',
+                hasBunnyOption: true
+            },
+            {
+                id: 'green-beans-curry',
+                name: 'Green Beans Curry',
+                price: 80,
+                category: 'curries',
+                badge: 'Vegetarian',
+                description: 'Fresh sliced green beans and soft potatoes braised in aromatic home-ground spices.',
+                hasBunnyOption: true
+            },
 
-            tabLinks.forEach(link => {
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const targetId = link.getAttribute('data-tab');
-                    const targetContent = document.getElementById(targetId + '-content');
+            // --- BREYANI, ROLLS & MORE ---
+            {
+                id: 'breyani-lamb',
+                name: 'Breyani Lamb',
+                price: 150,
+                category: 'breyani',
+                badge: 'Signature',
+                description: 'Fragrant basmati rice layered with spiced tender lamb, brown lentils (masoor), fried onions, and boiled egg.'
+            },
+            {
+                id: 'breyani-chicken',
+                name: 'Breyani Chicken',
+                price: 130,
+                category: 'breyani',
+                description: 'Traditional Durban chicken breyani steamed with saffron-infused rice, lentils, potatoes, and aromatic whole spices.'
+            },
+            {
+                id: 'roti-rolls',
+                name: 'Roti Rolls (Steak/Chicken)',
+                price: 80,
+                category: 'breyani',
+                description: 'Soft, flaky homemade roti wrapped around your choice of saucy masala steak or spiced chicken filling.',
+                proteinOptions: ['Steak', 'Chicken']
+            },
+            {
+                id: 'chicken-wraps',
+                name: 'Chicken Wraps',
+                price: 80,
+                category: 'breyani',
+                description: 'Tender spiced chicken strips, crisp greens, and signature sauce folded in a warm toasted wrap.'
+            },
+            {
+                id: 'masala-sandwich',
+                name: 'Masala Steak/Chicken Sandwich',
+                price: 80,
+                category: 'breyani',
+                description: 'Loaded toasted sandwich packed with fiery Durban masala steak or chicken filling.',
+                proteinOptions: ['Masala Steak', 'Masala Chicken']
+            },
 
-                    tabLinks.forEach(l => l.classList.remove('tab-active'));
-                    tabContents.forEach(c => c.classList.add('hidden'));
+            // --- SIDES & SNACKS ---
+            {
+                id: 'samoosas-each',
+                name: 'Samoosas',
+                price: 10,
+                category: 'sides',
+                unitLabel: 'each',
+                description: 'Golden, ultra-crispy triangular pastry filled with savoury spiced filling (sold individually).'
+            },
+            {
+                id: 'samoosas-dozen',
+                name: 'Samoosas (order per dozen)',
+                price: 120,
+                category: 'sides',
+                badge: 'Popular Platter',
+                description: 'A full dozen (12) of our famous crispy, golden-fried Durban samoosas.'
+            },
+            {
+                id: 'chilli-bites-normal',
+                name: 'Chilli Bites Normal (per dozen)',
+                price: 90,
+                category: 'sides',
+                badge: 'Vegetarian',
+                description: '12 crisp, golden gram-flour bhajias studded with onions, dhania, and green chillies.'
+            },
+            {
+                id: 'chilli-bites-large',
+                name: 'Chilli Bites Large (per dozen)',
+                price: 120,
+                category: 'sides',
+                badge: 'Vegetarian',
+                description: '12 extra-large, fluffy inside and crunchy outside traditional Durban chilli bites.'
+            },
+            {
+                id: 'plain-roti-dozen',
+                name: 'Plain Roti (dozen)',
+                price: 100,
+                category: 'sides',
+                description: 'Dozen (12) soft, flaky homemade butter rotis—perfect for scooping up curry.'
+            },
+            {
+                id: 'plain-roti-each',
+                name: 'Plain Roti (each)',
+                price: 10,
+                category: 'sides',
+                description: 'Single warm, soft homemade plain roti.'
+            }
+        ];
 
-                    link.classList.add('tab-active');
-if (targetContent) {
-                        targetContent.classList.remove('hidden');
+        // =========================================================================
+        // 2. GALLERY DATA (Updated with lambbunny.jpg, chilli-bites.jpg & samoosaandspringrollplatter.jpg)
+        // =========================================================================
+        const GALLERY_DATA = [
+            {
+                title: 'Mutton Curry',
+                localSrc: 'curry-1.jpg',
+                fallbackSrc: 'https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=800&q=80',
+                alt: 'A rich and hearty lamb and potato curry',
+                desc: 'Slow-cooked bone-in Durban mutton/lamb & soft potato curry in rich gravy.'
+            },
+            {
+                title: 'Butter Chicken',
+                localSrc: 'curry-2.jpg',
+                fallbackSrc: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80',
+                alt: 'Creamy butter chicken curry',
+                desc: 'Velvety, mildly spiced tomato and cream gravy with tender chicken.'
+            },
+            {
+                title: 'Bunny Chow',
+                localSrc: 'lambbunny.jpg',
+                fallbackSrc: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80',
+                alt: 'A delicious lamb bunny chow',
+                desc: 'Fresh hollowed-out loaf overflowing with Piping-hot Durban curry (+R10 on any curry).'
+            },
+            {
+                title: 'Breyani',
+                localSrc: 'briyani.jpg',
+                fallbackSrc: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80',
+                alt: 'A plate of delicious breyani',
+                desc: 'Fragrant basmati rice, lentils, crispy onions, and tender spiced lamb or chicken.'
+            },
+            {
+                title: 'Chilli Bites',
+                localSrc: 'chilli-bites.jpg',
+                fallbackSrc: 'https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=800&q=80',
+                alt: 'A plate of fresh, golden-brown chilli bites',
+                desc: 'Crispy, golden-fried spiced gram flour fritters (available in Normal or Large dozen).'
+            },
+            {
+                title: 'Roti Rolls',
+                localSrc: 'roti-rolls.jpg',
+                fallbackSrc: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=800&q=80',
+                alt: 'A tasty roti roll',
+                desc: 'Flaky, warm homemade roti rolled with succulent masala steak or chicken.'
+            },
+            {
+                title: 'Samoosas',
+                localSrc: 'samoosas.jpg',
+                fallbackSrc: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
+                alt: 'A platter of crispy samoosas',
+                desc: 'Hand-folded, ultra-crisp Durban samoosas packed with flavourful filling.'
+            },
+            {
+                title: 'Platters',
+                localSrc: 'samoosaandspringrollplatter.jpg',
+                fallbackSrc: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80',
+                alt: 'A samoosa and springroll platter',
+                desc: 'Perfect for family gatherings, events, and celebrations in Kempton Park.'
+            }
+        ];
+
+        // =========================================================================
+        // 3. STATE MANAGEMENT
+        // =========================================================================
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let cart = [];
+        // Track selected options per dish card before adding to cart
+        const selectedOptions = {};
+
+        // =========================================================================
+        // 4. MENU RENDERING & FILTERING
+        // =========================================================================
+        function renderMenu() {
+            const container = document.getElementById('menu-items-container');
+            const query = searchQuery.trim().toLowerCase();
+
+            const categoriesToRender = [
+                { key: 'curries', title: 'Curries', subtitle: '* Served with Rice or Roti. Add R10 for Bunny Chows.' },
+                { key: 'breyani', title: 'Breyani, Rolls & More', subtitle: 'Hearty Durban classics made fresh to order.' },
+                { key: 'sides', title: 'Sides & Snacks', subtitle: 'Crispy samoosas, chilli bites, and homemade plain rotis.' }
+            ];
+
+            let html = '';
+            let totalMatches = 0;
+
+            categoriesToRender.forEach(catGroup => {
+                if (currentCategory !== 'all' && currentCategory !== catGroup.key) return;
+
+                const items = MENU_DATA.filter(item => {
+                    const matchesCategory = item.category === catGroup.key;
+                    const matchesSearch = !query || 
+                        item.name.toLowerCase().includes(query) || 
+                        item.description.toLowerCase().includes(query);
+                    return matchesCategory && matchesSearch;
+                });
+
+                if (items.length === 0) return;
+                totalMatches += items.length;
+
+                html += `
+                    <div class="space-y-5">
+                        <div class="border-b-2 border-brand-olive/20 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-1">
+                            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-brand-olive-dark">${catGroup.title}</h3>
+                            <p class="text-xs sm:text-sm font-semibold text-brand-olive">${catGroup.subtitle}</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            ${items.map(item => renderDishCard(item)).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (totalMatches === 0) {
+                html = `
+                    <div class="bg-brand-cream p-10 rounded-2xl text-center border border-brand-olive/15">
+                        <i class="fa-solid fa-bowl-food text-3xl text-brand-olive/50 mb-3"></i>
+                        <p class="font-serif text-xl font-bold text-brand-olive-dark">No dishes match "${searchQuery}"</p>
+                        <p class="text-sm text-gray-600 mt-1">Try clearing your search or viewing all menu categories.</p>
+                        <button onclick="clearMenuSearch()" class="mt-4 bg-brand-olive text-brand-gold px-5 py-2 rounded-xl text-sm font-bold">
+                            Reset Search
+                        </button>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function renderDishCard(item) {
+            // Initialize default option state if needed
+            if (!selectedOptions[item.id]) {
+                if (item.hasBunnyOption) {
+                    selectedOptions[item.id] = { base: 'Rice', extraPrice: 0 };
+                } else if (item.proteinOptions) {
+                    selectedOptions[item.id] = { base: item.proteinOptions[0], extraPrice: 0 };
+                } else {
+                    selectedOptions[item.id] = { base: '', extraPrice: 0 };
+                }
+            }
+
+            const currentOpt = selectedOptions[item.id];
+            const displayPrice = item.price + (currentOpt.extraPrice || 0);
+
+            let badgeHtml = '';
+            if (item.badge) {
+                const isVeg = item.badge === 'Vegetarian';
+                const badgeClass = isVeg 
+                    ? 'bg-emerald-100 text-emerald-800 border-emerald-300' 
+                    : 'bg-amber-100 text-amber-900 border-amber-300';
+                badgeHtml = `<span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${badgeClass}">${item.badge}</span>`;
+            }
+
+            // Option Selector UI (For Curries: Rice / Roti / Bunny Chow +R10; For Rolls/Sandwiches: Steak / Chicken)
+            let selectorHtml = '';
+            if (item.hasBunnyOption) {
+                const bases = [
+                    { label: 'With Rice', val: 'Rice', extra: 0 },
+                    { label: 'With Roti', val: 'Roti', extra: 0 },
+                    { label: 'Bunny Chow (+R10)', val: 'Bunny Chow', extra: 10 }
+                ];
+                selectorHtml = `
+                    <div class="pt-3 mt-3 border-t border-brand-olive/10">
+                        <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-olive mb-1.5">Choose Serving Style:</span>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            ${bases.map(b => {
+                                const active = currentOpt.base === b.val;
+                                return `
+                                    <button 
+                                        type="button"
+                                        onclick="selectDishOption('${item.id}', '${b.val}', ${b.extra})"
+                                        class="text-xs py-1.5 px-2 rounded-lg font-semibold border transition-all ${
+                                            active 
+                                                ? 'bg-brand-olive text-brand-gold border-brand-olive shadow-sm' 
+                                                : 'bg-white/70 text-brand-dark border-brand-olive/20 hover:bg-brand-olive/10'
+                                        }"
+                                    >
+                                        ${b.label}
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            } else if (item.proteinOptions) {
+                selectorHtml = `
+                    <div class="pt-3 mt-3 border-t border-brand-olive/10">
+                        <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-olive mb-1.5">Choose Filling:</span>
+                        <div class="grid grid-cols-2 gap-2">
+                            ${item.proteinOptions.map(p => {
+                                const active = currentOpt.base === p;
+                                return `
+                                    <button 
+                                        type="button"
+                                        onclick="selectDishOption('${item.id}', '${p}', 0)"
+                                        class="text-xs py-1.5 px-2.5 rounded-lg font-semibold border transition-all ${
+                                            active 
+                                                ? 'bg-brand-olive text-brand-gold border-brand-olive shadow-sm' 
+                                                : 'bg-white/70 text-brand-dark border-brand-olive/20 hover:bg-brand-olive/10'
+                                        }"
+                                    >
+                                        ${p}
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="bg-brand-cream/90 hover:bg-white rounded-2xl p-5 border border-brand-olive/15 shadow-sm hover:shadow-warm transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <h4 class="font-serif text-xl font-bold text-brand-olive-dark">${item.name}</h4>
+                                    ${badgeHtml}
+                                </div>
+                                <p class="text-xs sm:text-sm text-brand-dark/75 mt-1 leading-relaxed">${item.description}</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <span class="inline-block text-lg sm:text-xl font-extrabold text-accent-red bg-accent-red/10 px-3 py-1 rounded-xl">
+                                    R ${displayPrice}
+                                </span>
+                            </div>
+                        </div>
+
+                        ${selectorHtml}
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-brand-olive/10 flex items-center justify-between gap-2">
+                        <span class="text-xs text-brand-olive font-medium">
+                            <i class="fa-solid fa-fire-burner mr-1"></i>Prepared fresh to order
+                        </span>
+                        <button 
+                            type="button"
+                            onclick="addToCart('${item.id}')"
+                            class="inline-flex items-center gap-1.5 bg-brand-olive hover:bg-brand-olive-dark text-brand-gold font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-sm hover:shadow transition-all active:scale-95"
+                        >
+                            <i class="fa-solid fa-plus text-amber-300"></i>
+                            <span>Add to Order</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectDishOption(itemId, baseVal, extraPrice) {
+            selectedOptions[itemId] = { base: baseVal, extraPrice: extraPrice };
+            renderMenu();
+        }
+
+        function filterMenuCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.menu-cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.className = 'menu-cat-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all bg-brand-olive text-brand-gold shadow-sm whitespace-nowrap';
+                } else {
+                    btn.className = 'menu-cat-btn px-5 py-2.5 rounded-xl font-semibold text-sm transition-all bg-brand-cream text-brand-olive-dark hover:bg-brand-olive/10 border border-brand-olive/15 whitespace-nowrap';
+                }
+            });
+            renderMenu();
+        }
+
+        function handleMenuSearch(val) {
+            searchQuery = val;
+            const clearBtn = document.getElementById('clear-search-btn');
+            if (val.trim().length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+            renderMenu();
+        }
+
+        function clearMenuSearch() {
+            searchQuery = '';
+            const input = document.getElementById('menu-search-input');
+            if (input) input.value = '';
+            document.getElementById('clear-search-btn').classList.add('hidden');
+            renderMenu();
+        }
+
+        // =========================================================================
+        // 5. GALLERY RENDERING & LIGHTBOX
+        // =========================================================================
+        function renderGallery() {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = GALLERY_DATA.map((g, idx) => `
+                <div 
+                    onclick="openLightbox(${idx})" 
+                    class="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-warm-lg border border-brand-olive/15 transition-all duration-300 flex flex-col"
+                >
+                    <div class="relative aspect-square overflow-hidden bg-brand-olive-dark">
+                        <img 
+                            src="${g.localSrc}" 
+                            onerror="this.onerror=null; this.src='${g.fallbackSrc}';" 
+                            alt="${g.alt}" 
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <span class="text-white text-xs font-semibold flex items-center gap-1.5">
+                                <i class="fa-solid fa-magnifying-glass-plus text-amber-300"></i>
+                                Click to enlarge
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center flex-1 flex flex-col justify-between bg-brand-cream">
+                        <div>
+                            <h3 class="font-serif text-lg font-bold text-brand-olive-dark group-hover:text-accent-red transition-colors">${g.title}</h3>
+                            <p class="text-xs text-brand-dark/70 mt-1 line-clamp-2">${g.desc}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openLightbox(index) {
+            const item = GALLERY_DATA[index];
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            img.src = item.localSrc;
+            img.onerror = function() {
+                this.onerror = null;
+                this.src = item.fallbackSrc;
+            };
+            img.alt = item.alt;
+            document.getElementById('lightbox-title').textContent = item.title;
+            document.getElementById('lightbox-desc').textContent = item.desc;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // =========================================================================
+        // 6. CART & WHATSAPP ORDER BUILDER
+        // =========================================================================
+        function addToCart(itemId) {
+            const menuItem = MENU_DATA.find(m => m.id === itemId);
+            if (!menuItem) return;
+
+            const opt = selectedOptions[itemId] || { base: '', extraPrice: 0 };
+            const unitPrice = menuItem.price + (opt.extraPrice || 0);
+            const cartKey = `${itemId}__${opt.base || 'standard'}`;
+
+            const existing = cart.find(c => c.cartKey === cartKey);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({
+                    cartKey,
+                    id: menuItem.id,
+                    name: menuItem.name,
+                    optionLabel: opt.base,
+                    unitPrice,
+                    qty: 1
+                });
+            }
+
+            updateCartUI();
+            const displayLabel = opt.base ? `${menuItem.name} (${opt.base})` : menuItem.name;
+            showToast(`Added ${displayLabel} to your order`);
+        }
+
+        function updateCartQty(cartKey, delta) {
+            const idx = cart.findIndex(c => c.cartKey === cartKey);
+            if (idx === -1) return;
+
+            cart[idx].qty += delta;
+            if (cart[idx].qty <= 0) {
+                cart.splice(idx, 1);
+            }
+            updateCartUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.unitPrice * item.qty), 0);
+
+            // Header badge
+            document.getElementById('header-cart-count').textContent = totalCount;
+            document.getElementById('header-cart-total').textContent = `R ${totalPrice}`;
+            const headerBtn = document.getElementById('header-cart-btn');
+            headerBtn.classList.remove('cart-bump');
+            void headerBtn.offsetWidth;
+            headerBtn.classList.add('cart-bump');
+
+            // Floating bottom bar
+            const floatingBar = document.getElementById('floating-cart-bar');
+            if (totalCount > 0) {
+                floatingBar.classList.remove('hidden');
+                document.getElementById('floating-cart-count').textContent = totalCount;
+                document.getElementById('floating-cart-total').textContent = `R ${totalPrice}`;
+            } else {
+                floatingBar.classList.add('hidden');
+            }
+
+            // Drawer Total
+            document.getElementById('drawer-cart-total').textContent = `R ${totalPrice}`;
+
+            // Drawer List
+            const listEl = document.getElementById('cart-items-list');
+            if (cart.length === 0) {
+                listEl.innerHTML = `
+                    <div class="text-center py-8 bg-white/60 rounded-2xl border border-brand-olive/10 p-4">
+                        <i class="fa-solid fa-basket-shopping text-3xl text-brand-olive/40 mb-2"></i>
+                        <p class="font-bold text-brand-olive-dark">Your order list is empty</p>
+                        <p class="text-xs text-gray-500 mt-1">Add curries, breyani, or samoosas from the menu to generate an instant WhatsApp order.</p>
+                    </div>
+                `;
+            } else {
+                listEl.innerHTML = cart.map(item => `
+                    <div class="bg-white p-3.5 rounded-xl border border-brand-olive/15 flex items-center justify-between gap-3 shadow-sm">
+                        <div class="min-w-0">
+                            <h5 class="font-bold text-sm text-brand-olive-dark truncate">${item.name}</h5>
+                            ${item.optionLabel ? `<span class="inline-block text-[11px] font-semibold bg-brand-gold/70 text-brand-olive-dark px-2 py-0.5 rounded-md mt-0.5">${item.optionLabel}</span>` : ''}
+                            <p class="text-xs font-bold text-accent-red mt-1">R ${item.unitPrice} each</p>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="updateCartQty('${item.cartKey}', -1)" class="w-7 h-7 rounded-lg bg-brand-cream hover:bg-brand-gold text-brand-olive-dark font-bold flex items-center justify-center border border-brand-olive/20">
+                                -
+                            </button>
+                            <span class="font-extrabold text-sm w-5 text-center">${item.qty}</span>
+                            <button onclick="updateCartQty('${item.cartKey}', 1)" class="w-7 h-7 rounded-lg bg-brand-olive text-brand-gold font-bold flex items-center justify-center">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCartDrawer(open) {
+            const backdrop = document.getElementById('cart-drawer-backdrop');
+            const drawer = document.getElementById('cart-drawer');
+            if (open) {
+                backdrop.classList.remove('hidden');
+                drawer.classList.remove('translate-x-full');
+            } else {
+                backdrop.classList.add('hidden');
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        function sendOrderToWhatsApp() {
+            const name = document.getElementById('order-customer-name').value.trim();
+            const fulfillment = document.getElementById('order-fulfillment').value;
+            const payment = document.getElementById('order-payment').value;
+            const datetime = document.getElementById('order-datetime').value.trim();
+            const notes = document.getElementById('order-notes').value.trim();
+
+            let lines = [];
+            lines.push(`*Hi Nikki's Curry & All!*`);
+            lines.push(`I would like to place an order:`);
+            lines.push(``);
+
+            if (cart.length > 0) {
+                let total = 0;
+                cart.forEach(item => {
+                    const sub = item.unitPrice * item.qty;
+                    total += sub;
+                    const optText = item.optionLabel ? ` (${item.optionLabel})` : '';
+                    lines.push(`• ${item.qty}x ${item.name}${optText} — *R ${sub}*`);
+                });
+                lines.push(``);
+                lines.push(`*Estimated Total: R ${total}*`);
+            } else {
+                lines.push(`(Please let me know availability for my order)`);
+            }
+
+            lines.push(``);
+            if (name) lines.push(`*Name:* ${name}`);
+            lines.push(`*Order Type:* ${fulfillment}`);
+            lines.push(`*Payment:* ${payment}`);
+            if (datetime) lines.push(`*Preferred Time:* ${datetime}`);
+            if (notes) lines.push(`*Notes:* ${notes}`);
+
+            const encodedMessage = encodeURIComponent(lines.join('\n'));
+            const whatsappUrl = `https://wa.me/27714575636?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        // =========================================================================
+        // 7. NAVIGATION / TAB VIEW SWITCHING
+        // =========================================================================
+        function switchView(viewName) {
+            const sections = {
+                menu: document.getElementById('menu-section'),
+                events: document.getElementById('events-section'),
+                gallery: document.getElementById('gallery-section'),
+                about: document.getElementById('about-section'),
+                contact: document.getElementById('contact-section')
+            };
+            const hero = document.getElementById('hero-section');
+
+            if (viewName === 'all') {
+                hero.classList.remove('hidden');
+                Object.values(sections).forEach(sec => sec.classList.remove('hidden'));
+            } else {
+                // Focused Tab Mode (Matches original template's tab behaviour while feeling modern)
+                hero.classList.add('hidden');
+                Object.entries(sections).forEach(([key, sec]) => {
+                    if (key === viewName) {
+                        sec.classList.remove('hidden');
+                    } else {
+                        sec.classList.add('hidden');
                     }
                 });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Update active styling on nav buttons
+            document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+                const isTarget = btn.getAttribute('data-nav') === viewName;
+                const isMobile = btn.parentElement.classList.contains('md:hidden');
+                if (isMobile) {
+                    btn.className = isTarget
+                        ? 'nav-tab-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-brand-olive text-brand-gold whitespace-nowrap'
+                        : 'nav-tab-btn text-xs font-semibold px-3 py-1.5 rounded-lg text-brand-olive-dark whitespace-nowrap';
+                } else {
+                    btn.className = isTarget
+                        ? 'nav-tab-btn px-5 py-2 rounded-full text-sm font-semibold transition-all bg-brand-olive text-brand-gold shadow-sm'
+                        : 'nav-tab-btn px-5 py-2 rounded-full text-sm font-semibold text-brand-olive-dark hover:text-brand-olive transition-all';
+                }
             });
+        }
+
+        function scrollToSection(sectionId) {
+            switchView('all');
+            setTimeout(() => {
+                const el = document.getElementById(sectionId);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
+
+        // =========================================================================
+        // 8. UTILITIES (CLIPBOARD & TOAST)
+        // =========================================================================
+        function copyPhoneNumber() {
+            const tempInput = document.createElement('input');
+            tempInput.value = '071 457 5636';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const label = document.getElementById('copy-phone-label');
+            label.textContent = 'Copied 071 457 5636!';
+            showToast('Phone number copied to clipboard');
+            setTimeout(() => {
+                label.textContent = 'Copy Phone Number';
+            }, 2500);
+        }
+
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('translate-x-[150%]');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-x-[150%]');
+            }, 2600);
+        }
+
+        // Initialize on DOM Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu();
+            renderGallery();
+            updateCartUI();
         });
     </script>
 </body>
